@@ -1,0 +1,38 @@
+campaign:
+  name: "CERTI-RPO-HIL TRL 4 Verification Campaign"
+  duration_s: 180.0
+  dt_s: 0.5
+  seed: 2026
+
+orbit:
+  altitude_m: 550000.0
+  inclination_deg: 51.6
+  chaser_mass_kg: 180.0
+  max_thrust_n: 14.4
+  docking_port_pos_m: [0.0, -2.2, 0.0]
+
+vision_speed_plus:
+  nominal_pos_sigma_m: 0.015
+  lidar_pos_sigma_m: 0.022
+  glare_window_s: [38.0, 66.0]
+  eclipse_window_s: [122.0, 158.0]
+  mahalanobis_gate_threshold: 16.27
+
+safety_shield_astm_f3269:
+  koz_radius_m: 2.0
+  passive_abort_radius_m: 1.85
+  los_cone_half_angle_deg: 20.0
+  max_touchdown_speed_ms: 0.06
+
+thruster_fault:
+  enabled: true
+  window_s: [70.0, 115.0]
+  stuck_bias_accel_ms2: [0.018, 0.032, -0.010]
+  effectiveness_scale: [0.78, 0.72, 0.85]
+
+hil_bridge_ccsds:
+  protocol: "CCSDS-133.0-B-2"
+  crc: "CRC-16-CCITT"
+  transport_mode: "LOOPBACK"
+  seu_bitflip_probability: 0.012
+  packet_dropout_probability: 0.008

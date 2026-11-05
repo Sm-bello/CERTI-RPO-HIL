@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "CERTI-RPO-HIL: Certifiable Autonomous RPOD Radiometric Optical Navigation & Control Barrier Function (CBF) Runtime Assurance HIL Testbed"
+message: "If you use CERTI-RPO-HIL in your aerospace research or qualification campaigns, please cite it as below."
+type: software
+authors:
+  - name: "Physics Hybrid Integrity Lab"
+  - name: "DIMASA (Digital Intelligence Maintenance for Aircraft Systems in Africa)"
+version: 1.0.0
+date-released: 2026-11-05
+license: Apache-2.0

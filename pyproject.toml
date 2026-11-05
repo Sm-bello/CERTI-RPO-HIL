@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "certi-rpo-hil"
+version = "1.0.0"
+description = "CERTI-RPO-HIL: Certifiable Autonomous RPOD Radiometric Optical Navigation & CBF-QP Runtime Assurance HIL Testbed"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pyyaml>=6.0",
+    "osqp>=0.6",
+    "pyserial>=3.5",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"

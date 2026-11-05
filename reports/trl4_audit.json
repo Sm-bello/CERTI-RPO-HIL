@@ -1,0 +1,141 @@
+{
+  "framework": "CERTI-RPO-HIL",
+  "version": "1.0.0",
+  "trl_level": "TRL 4 (Breadboard & HIL Validated)",
+  "sponsors": [
+    "DIMASA (Digital Intelligence Maintenance for Aircraft Systems in Africa)",
+    "Physics Hybrid Integrity Lab"
+  ],
+  "campaign_sha256": "ee17034e5fd2a70f25a3604d193f9e23ba5acf4b71cd2179fefe1c8b800c66f7",
+  "reproducibility_max_diff": 0.0,
+  "shielded_summary": {
+    "min_koz_margin_m": 0.34446851142874557,
+    "min_los_margin_m": 0.24481343778770914,
+    "min_passive_abort_dist_m": 2.3444686386487184,
+    "final_docking_error_m": 0.15740416233721136,
+    "final_closing_speed_ms": 0.002560138407666232,
+    "glare_pos_rmse_m": 0.019229612683037585,
+    "p99_qp_solve_us": 1344.9239993497104,
+    "ccsds_packets_sent": 720,
+    "ccsds_crc_rejections": 3,
+    "trajectory_sha256": "1f580952f5413a72fb70633938e9c14f0a323fa1f8befa06a2075f1526e9664c"
+  },
+  "unshielded_summary": {
+    "min_koz_margin_m": -1.7142272159533691,
+    "min_los_margin_m": -3.116816265592399,
+    "min_passive_abort_dist_m": 0.28577406154268287,
+    "final_docking_error_m": 0.4249836476474947,
+    "final_closing_speed_ms": 0.09506479236727955,
+    "glare_pos_rmse_m": 3.93662399265268,
+    "trajectory_sha256": "cdb227e5a7181948d71cc400a732ae3e9e5e2c55c0d1bab25bab53686ecd8596"
+  },
+  "pillars": [
+    {
+      "pillar_id": 1,
+      "name": "KOZ & LOS Corridor Barrier Invariance",
+      "standard_ref": "ASTM F3269-17 / NASA-STD-7009A",
+      "shielded_status": "PASS",
+      "unshielded_status": "FAIL",
+      "shielded_metric": "min h_KOZ = +0.34 m, min h_LOS = +0.24 m (0 breaches)",
+      "unshielded_metric": "min h_KOZ = -1.71 m, min h_LOS = -3.12 m (VIOLATED)",
+      "requirement": "h_KOZ(x) >= 0 m and h_LOS(x) >= 0 m for all t",
+      "metrics": {
+        "shielded_min_h_koz_m": 0.34446851142874557,
+        "unshielded_min_h_koz_m": -1.7142272159533691,
+        "shielded_min_h_los_m": 0.24481343778770914,
+        "unshielded_min_h_los_m": -3.116816265592399
+      }
+    },
+    {
+      "pillar_id": 2,
+      "name": "Passive Abort 2-Orbit Free-Drift Safety",
+      "standard_ref": "ESA ECSS-E-ST-10-02C / ISS RPOD Rules",
+      "shielded_status": "PASS",
+      "unshielded_status": "FAIL",
+      "shielded_metric": "Min Drift Dist = 2.34 m (100.0% safe)",
+      "unshielded_metric": "Min Drift Dist = 0.29 m (75.6% safe - COLLISION)",
+      "requirement": "2-Orbit Free-Drift Closest Approach >= 1.85 m",
+      "metrics": {
+        "shielded_min_drift_m": 2.3444686386487184,
+        "unshielded_min_drift_m": 0.28577406154268287,
+        "shielded_abort_safe_pct": 100.0,
+        "unshielded_abort_safe_pct": 75.55555555555556
+      }
+    },
+    {
+      "pillar_id": 3,
+      "name": "Radiometric MLI Glare & Eclipse MEKF Robustness",
+      "standard_ref": "Stanford SLAB SPEED+ HIL Benchmark",
+      "shielded_status": "PASS",
+      "unshielded_status": "FAIL",
+      "shielded_metric": "Glare Pos RMSE = 0.019 m (100% glare gated)",
+      "unshielded_metric": "Glare Pos RMSE = 3.937 m (0% gated - Corrupted)",
+      "requirement": "MEKF Position RMSE <= 0.120 m under Kapton MLI BRDF Glare & Eclipse",
+      "metrics": {
+        "shielded_glare_pos_rmse_m": 0.019229612683037585,
+        "unshielded_glare_pos_rmse_m": 3.93662399265268,
+        "shielded_glare_rejection_pct": 100.0
+      }
+    },
+    {
+      "pillar_id": 4,
+      "name": "Stuck-Open & Degraded Thruster Fault Tolerance",
+      "standard_ref": "NASA GPR 8705.2 / Fault-Tolerant GNC",
+      "shielded_status": "PASS",
+      "unshielded_status": "FAIL",
+      "shielded_metric": "Final Port Err = 0.16 m, v_end = 0.003 m/s",
+      "unshielded_metric": "Final Port Err = 0.42 m, v_end = 0.095 m/s",
+      "requirement": "Survive +0.032 m/s^2 stuck-open thruster fault without KOZ breach",
+      "metrics": {
+        "shielded_final_dock_err_m": 0.15740416233721136,
+        "unshielded_final_dock_err_m": 0.4249836476474947,
+        "shielded_final_speed_ms": 0.002560138407666232,
+        "unshielded_final_speed_ms": 0.09506479236727955
+      }
+    },
+    {
+      "pillar_id": 5,
+      "name": "CCSDS 133.0-B-2 HIL Bus & CRC-16 Fault Rejection",
+      "standard_ref": "CCSDS 133.0-B-2 Space Packet Protocol",
+      "shielded_status": "PASS",
+      "unshielded_status": "PASS",
+      "shielded_metric": "3/3 SEU bit-flips caught (100% CRC)",
+      "unshielded_metric": "3/3 SEU bit-flips caught",
+      "requirement": "100% CRC-16-CCITT detection of single-bit wire upsets + ZOH recovery",
+      "metrics": {
+        "total_packets": 720.0,
+        "injected_bitflips": 3.0,
+        "crc_rejections": 3.0,
+        "detection_rate_pct": 100.0
+      }
+    },
+    {
+      "pillar_id": 6,
+      "name": "Cryptographic SHA-256 Reproducibility",
+      "standard_ref": "NASA-STD-7009A / ASME V&V 40",
+      "shielded_status": "PASS",
+      "unshielded_status": "PASS",
+      "shielded_metric": "Max Multi-Run Drift = 0.00e+00 (SHA-256: 1f580952f5...)",
+      "unshielded_metric": "Max Multi-Run Drift = 0.00e+00",
+      "requirement": "Bitwise deterministic trajectory reproduction (max deviation < 1e-9)",
+      "metrics": {
+        "reproducibility_max_diff": 0.0
+      }
+    },
+    {
+      "pillar_id": 7,
+      "name": "Hard Real-Time 50 Hz CBF-QP Timing Budget",
+      "standard_ref": "DO-178C DAL B / 50 Hz (20,000 us) Frame",
+      "shielded_status": "PASS",
+      "unshielded_status": "PASS",
+      "shielded_metric": "P50 = 259.3 us, P99 = 1344.9 us, WCET = 1601.0 us",
+      "unshielded_metric": "P50 = 279.5 us",
+      "requirement": "P99 Safety Shield Execution <= 2,000 us (< 10% of 50 Hz frame)",
+      "metrics": {
+        "p50_solve_us": 259.25000227289274,
+        "p99_solve_us": 1344.9239993497104,
+        "wcet_solve_us": 1601.0000035748817
+      }
+    }
+  ]
+}
